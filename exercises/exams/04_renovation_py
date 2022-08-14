@@ -1,0 +1,28 @@
+import math
+
+heigh_wall = int(input())
+wight_wall = int(input())
+percent_no_paint_wall = int(input())
+
+painted_surface = math.ceil(heigh_wall * wight_wall * 4)
+total_painted_surface = painted_surface - (painted_surface * percent_no_paint_wall / 100)
+
+command = input()
+all_was_painted = False
+diff = 0
+while command != "Tired!":
+    paint_liters = int(command)
+    total_painted_surface -= paint_liters
+    if total_painted_surface <= 0:
+        all_was_painted = True
+        diff = abs(total_painted_surface)
+        break
+
+    command = input()
+
+if command == "Tired!":
+    print(f"{round(total_painted_surface)} quadratic m left.")
+elif all_was_painted == True and total_painted_surface == 0:
+    print("All walls are painted! Great job, Pesho!")
+elif all_was_painted == True and diff > 0:
+    print(f"All walls are painted and you have {round(diff)} l paint left!")
